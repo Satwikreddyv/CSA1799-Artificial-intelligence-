@@ -1,0 +1,13 @@
+% Facts representing the database with name and date of birth.
+dob(john, '1990-05-15').
+dob(alice, '1985-12-03').
+dob(bob, '1998-08-22').
+dob(mary, '1976-02-10').
+
+% Query to retrieve the date of birth for a given person.
+get_dob(Person, DateOfBirth) :-
+    dob(Person, DateOfBirth).
+
+% Example queries:
+% To get the date of birth for 'john', you can use: get_dob(john, Date).
+% This will unify Date with '1990-05-15'.
