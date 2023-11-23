@@ -1,0 +1,13 @@
+% Rules
+has_flu(X) :- has_fever(X), has_cough(X).
+has_cold(X) :- has_fever(X), has_runny_nose(X).
+
+% Example query
+diagnose(X, flu) :- has_flu(X).
+
+% Initial facts
+has_fever(john).
+has_cough(john).
+
+% Example query
+?- diagnose(john, flu).
