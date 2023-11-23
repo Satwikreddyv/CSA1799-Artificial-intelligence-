@@ -1,0 +1,16 @@
+% Facts representing whether birds can fly.
+can_fly(penguin) :- false.
+can_fly(ostrich) :- false.
+can_fly(albatross) :- true.
+can_fly(sparrow) :- true.
+can_fly(eagle) :- true.
+
+% Query to check if a particular bird can fly.
+check_fly_ability(Bird) :-
+    can_fly(Bird) -> 
+        format('~w can fly.~n', [Bird]);
+        format('~w cannot fly.~n', [Bird]).
+
+% Example queries:
+% To check if a sparrow can fly, use: check_fly_ability(sparrow).
+% To check if an ostrich can fly, use: check_fly_ability(ostrich).
