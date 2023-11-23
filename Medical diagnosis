@@ -1,0 +1,24 @@
+% Facts representing symptoms and diseases.
+symptom(john, fever).
+symptom(john, cough).
+symptom(jane, headache).
+symptom(jane, nausea).
+symptom(bob, cough).
+symptom(bob, fatigue).
+
+disease(cold, [fever, cough]).
+disease(flu, [fever, cough, fatigue]).
+disease(migraine, [headache, nausea]).
+
+% Predicate to check if a person has a specific symptom.
+has_symptom(Person, Symptom) :-
+    symptom(Person, Symptom).
+
+% Predicate to check if a person has a specific disease based on symptoms.
+has_disease(Person, Disease) :-
+    disease(Disease, Symptoms),
+    forall(member(Symptom, Symptoms), has_symptom(Person, Symptom)).
+
+% Example usage:
+% To check if John has the flu, use: has_disease(john, flu).
+% To check if Jane has a cold, use: has_disease(jane, cold).
