@@ -1,0 +1,78 @@
+% Initial state: monkey is on the floor, banana is hanging, and chair is in the room.
+on_floor(monkey).
+on_ceiling(banana).
+in_room(chair).
+
+% Define actions to move the monkey and reach the banana.
+% Action 1: Monkey climbs the chair.
+action(climb, monkey, chair).
+
+% Action 2: Monkey reaches for the banana.
+action(reach, monkey, banana) :- on_floor(monkey), on_ceiling(banana), on(chair, monkey).
+
+% Define rules for moving the monkey.
+% Rule 1: Monkey can move from the floor to the chair.
+on_floor(monkey) :- not(on(chair, monkey)), action(climb, monkey, chair).
+
+% Rule 2: Monkey can reach the banana when on the chair.
+on(chair, monkey) :- action(climb, monkey, chair).
+on(chair, monkey) :- action(reach, monkey, banana).
+
+% Solve the problem by finding a sequence of actions.
+solve :-
+    on_floor(monkey),
+    on_ceiling(banana),
+    in_room(chair),
+    write('Initial state: '), writeln([on_floor(monkey), on_ceiling(banana), in_room(chair)]),
+    find_solution([on_floor(monkey), on_ceiling(banana), in_room(chair)], []).
+
+% Find a solution using depth-first search.
+find_solution(State, _) :-
+    goal_state(State),
+    write('Goal state reached!'), nl,
+    write('Solution path: '), writeln(State).
+
+find_solution(State, Visited) :-
+    move(State, NextState),
+    not(member(NextState, Visited)),
+    find_solution(NextState, [NextState | Visited]).
+
+% Define the goal state.
+goal_state([on(chair, monkey), on_ceiling(banana)]).
+
+% Define possible moves.
+move(State, NextState) :- action(A, X, Y), apply(A, X, Y, State, NextState).
+
+% Apply actions to change the state.
+apply(climb, monkey, chair, State, NextState) :-
+    subtract(State, [on_floor(monkey)], TempState),
+    union(TempState, [on(chair, monkey)], NextState).
+
+apply(reach, monkey, banana, State, NextState) :-
+    subtract(State, [on_floor(monkey), on_ceiling(banana)], TempState),
+    union(TempState, [on(chair, monkey), on(monkey, banana)], NextState).
+
+% Helper predicate to remove elements from a list.
+subtract([], _, []).
+subtract([X|Tail], ToRemove, Result) :-
+    member(X, ToRemove),
+    subtract(Tail, ToRemove, Result).
+subtract([X|Tail], ToRemove, [X|Result]) :-
+    not(member(X, ToRemove)),
+    subtract(Tail, ToRemove, Result).
+
+% Helper predicate to find the union of two lists.
+union([], List, List).
+union([Head|Tail], List, Result) :-
+    member(Head, List),
+    union(Tail, List, Result).
+union([Head|Tail], List, [Head|Result]) :-
+    not(member(Head, List)),
+    union(Tail, List, Result).
+
+% Helper predicate to check if an element is a member of a list.
+member(Element, [Element|_]).
+member(Element, [_|Tail]) :- member(Element, Tail).
+
+% Example usage:
+% To find a solution, use: solve.
