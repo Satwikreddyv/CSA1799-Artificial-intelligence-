@@ -1,0 +1,24 @@
+% Facts representing parent-child relationships in a family tree.
+parent(john, jim).
+parent(john, ann).
+parent(mary, jim).
+parent(mary, ann).
+parent(jim, susan).
+parent(ann, patrick).
+parent(patrick, emily).
+
+% Rules to define other relationships (e.g., grandparent, sibling).
+grandparent(X, Z) :-
+    parent(X, Y),
+    parent(Y, Z).
+
+sibling(X, Y) :-
+    parent(Z, X),
+    parent(Z, Y),
+    X \= Y. % X and Y should be different.
+
+% Example queries:
+% To check if john is the parent of jim, use: parent(john, jim).
+% To find all children of mary, use: parent(mary, Child).
+% To find all grandparent-grandchild relationships, use: grandparent(Grandparent, Grandchild).
+% To find all siblings of ann, use: sibling(ann, Sibling).
