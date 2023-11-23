@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        article {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Blog</h1>
+    </header>
+
+    <article>
+        <h2><a href="#post1">Post 1: Introduction to HTML</a></h2>
+        <p>HTML stands for HyperText Markup Language...</p>
+    </article>
+
+    <article>
+        <h2><a href="#post2">Post 2: Styling with CSS</a></h2>
+        <p>Cascading Style Sheets (CSS) is a style sheet...</p>
+    </article>
+
+    <article>
+        <h2><a href="#post3">Post 3: Adding Interactivity with JavaScript</a></h2>
+        <p>JavaScript is a high-level, interpreted programming language...</p>
+    </article>
+</body>
+</html>
