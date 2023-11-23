@@ -1,0 +1,19 @@
+% Facts representing relationships between students, teachers, subjects, and course codes.
+teacher(mr_smith, math101).
+teacher(ms_doe, english201).
+
+student(john, math101).
+student(alice, english201).
+student(bob, math101).
+
+% Query to find the teacher of a given subject.
+get_teacher(Subject, Teacher) :-
+    teacher(Teacher, Subject).
+
+% Query to find the students of a given subject.
+get_students(Subject, Students) :-
+    findall(Student, student(Student, Subject), Students).
+
+% Example queries:
+% To find the teacher of math101, use: get_teacher(math101, Teacher).
+% To find the students of english201, use: get_students(english201, Students).
