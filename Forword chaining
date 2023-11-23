@@ -1,0 +1,14 @@
+% Initial facts
+has_fever(john).
+
+% Rules
+has_flu(X) :- has_fever(X), has_cough(X).
+has_cold(X) :- has_fever(X), has_runny_nose(X).
+
+% Forward chaining
+diagnose(X, flu) :- has_flu(X).
+diagnose(X, cold) :- has_cold(X).
+
+% Example queries
+% To check if John has the flu, use: diagnose(john, flu).
+% To check if John has a cold, use: diagnose(john, cold).
