@@ -1,0 +1,16 @@
+% Facts representing dietary recommendations for different diseases.
+diet_recommendation(diabetes, 'Low-carb and high-fiber diet. Avoid sugary foods.').
+diet_recommendation(hypertension, 'Low-sodium diet. Increase potassium-rich foods.').
+diet_recommendation(high_cholesterol, 'Low-cholesterol and low-fat diet. Increase fiber intake.').
+diet_recommendation(celiac_disease, 'Gluten-free diet. Avoid wheat, barley, and rye.').
+diet_recommendation(vegetarian, 'Plant-based diet. Avoid meat and fish.').
+diet_recommendation(vegan, 'Strictly plant-based diet. Avoid all animal products.').
+diet_recommendation(heart_disease, 'Low-sodium and low-fat diet. Increase fruits and vegetables.').
+
+% Query to get diet recommendations for a specific disease.
+get_diet_recommendation(Disease, Recommendation) :-
+    diet_recommendation(Disease, Recommendation).
+
+% Example queries:
+% To get diet recommendations for diabetes, use: get_diet_recommendation(diabetes, Recommendation).
+% To get diet recommendations for hypertension, use: get_diet_recommendation(hypertension, Recommendation).
