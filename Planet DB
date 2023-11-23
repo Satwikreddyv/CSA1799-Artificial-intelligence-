@@ -1,0 +1,31 @@
+% Facts representing the database of planets with name, distance from the sun, and type.
+planet(mercury, 57.9, rocky).
+planet(venus, 108.2, rocky).
+planet(earth, 149.6, rocky).
+planet(mars, 227.9, rocky).
+planet(jupiter, 778.3, gas_giant).
+planet(saturn, 1427.0, gas_giant).
+planet(uranus, 2870.0, ice_giant).
+planet(neptune, 4497.1, ice_giant).
+
+% Query to get information about a specific planet.
+get_planet_info(Name, Distance, Type) :-
+    planet(Name, Distance, Type).
+
+% Query to find all rocky planets.
+rocky_planet(Name) :-
+    planet(Name, _, rocky).
+
+% Query to find all gas giant planets.
+gas_giant_planet(Name) :-
+    planet(Name, _, gas_giant).
+
+% Query to find all ice giant planets.
+ice_giant_planet(Name) :-
+    planet(Name, _, ice_giant).
+
+% Example queries:
+% To get information about Earth, use: get_planet_info(earth, Distance, Type).
+% To find all rocky planets, use: rocky_planet(Name).
+% To find all gas giant planets, use: gas_giant_planet(Name).
+% To find all ice giant planets, use: ice_giant_planet(Name).
